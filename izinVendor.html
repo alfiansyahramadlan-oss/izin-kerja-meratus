@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Izin Kerja Vendor - PT Meratus Line</title>
+    <style>
+        /* Reset & Base Style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #f0f4f8; 
+            color: #2c3e50;
+            padding-bottom: 20px;
+        }
+
+        /* Top Corporate Bar ala Web Meratus */
+        .corporate-topbar {
+            background-color: #0a3764; /* Biru Tua Meratus */
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-main {
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+        .logo-sub {
+            font-size: 10px;
+            font-weight: bold;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+        .topbar-tag {
+            background-color: #1d4ed8;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Container & Card */
+        .main-wrapper {
+            max-width: 760px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+        }
+        .form-container { 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(10, 55, 100, 0.08); 
+            border-top: 5px solid #0a3764;
+        }
+        
+        /* Form Header Internal */
+        .page-title-block {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+        .page-title-block h2 {
+            color: #0a3764;
+            font-size: 22px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .page-title-block .sub-title {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .page-title-block .job-type {
+            font-size: 12px;
+            color: #0a3764;
+            font-style: italic;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+        
+        /* Section Divider */
+        .section-title { 
+            background: #f1f5f9; 
+            color: #0a3764;
+            padding: 10px 14px; 
+            font-weight: 700; 
+            font-size: 14px;
+            margin-top: 30px; 
+            margin-bottom: 20px; 
+            border-left: 4px solid #0a3764;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Form Controls */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            color: #334155; 
+            font-size: 13.5px;
+        }
+        .form-group input, .form-group textarea { 
+            width: 100%; 
+            padding: 12px 14px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-family: inherit;
+            font-size: 14px;
+            color: #334155;
+            background-color: #f8fafc;
+            transition: all 0.2s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #0a3764;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(10, 55, 100, 0.1);
+        }
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+
+        /* Submit Button */
+        button { 
+            width: 100%; 
+            padding: 14px; 
+            background-color: #0a3764; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 15px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            margin-top: 25px; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(10, 55, 100, 0.15);
+        }
+        button:hover { 
+            background-color: #0d4b87; 
+        }
+        button:active {
+            transform: scale(0.99);
+        }
+        
+        /* Status Box Response */
+        .status-box { display: none; margin-top: 25px; padding: 18px; border-radius: 6px; font-size: 14px; line-height: 1.6; }
+        .status-loading { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; text-align: center; font-weight: 600; }
+        .status-success { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        
+        /* Footer Credit */
+        .page-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 20px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 600px) {
+            .form-row { flex-direction: column; gap: 0; }
+            .corporate-topbar { padding: 15px 20px; flex-direction: column; gap: 10px; text-align: center; align-items: center; }
+            .logo-text-wrapper { align-items: center; }
+            .form-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="corporate-topbar">
+    <div class="logo-text-wrapper">
+        <div class="logo-main">PT MERATUS LINE</div>
+        <div class="logo-sub">Building Maintenance - General Affairs</div>
+    </div>
+    <div class="topbar-tag">Internal Portal</div>
+</div>
+
+<div class="main-wrapper">
+    <div class="form-container">
+        <div class="page-title-block">
+            <h2>Formulir Izin Kerja Vendor</h2>
+            <div class="sub-title">PT Meratus Line — General Affairs Division</div>
+            <div class="job-type">Scope: Maintenance / Renovation / New Project</div>
+        </div>
+        
+        <form id="izinKerjaForm">
+            <div class="section-title">Pemohon Izin Kerja (Vendor)</div>
+            <div class="form-group">
+                <label>Nama Perusahaan / Perorangan</label>
+                <input type="text" name="nama_perusahaan" required placeholder="Contoh: PT Nawa Anugerah Bersaudara">
+            </div>
+            <div class="form-group">
+                <label>Nama Pekerja (Anggota Tim)</label>
+                <textarea name="nama_pekerja" rows="2" required placeholder="Masukkan nama-nama pekerja..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Alamat Perusahaan</label>
+                <input type="text" name="alamat" required placeholder="Contoh: Krian, Sidoarjo">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nomor Telepon Kantor</label>
+                    <input type="tel" name="no_telp" required placeholder="Contoh: 0895-xxxx-xxxx">
+                </div>
+                <div class="form-group">
+                    <label>PIC / Pengawas Vendor</label>
+                    <input type="text" name="pic_vendor" required placeholder="Contoh: Yoko Prayuwono">
+                </div>
+            </div>
+
+            <div class="section-title">Periode Berlaku Izin Kerja</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tanggal Mulai</label>
+                    <input type="date" name="tgl_mulai" required>
+                </div>
+                <div class="form-group">
+                    <label>Jam Mulai</label>
+                    <input type="time" name="jam_mulai" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tanggal Selesai</label>
+                    <input type="date" name="tgl_selesai" required>
+                </div>
+                <div class="form-group">
+                    <label>Jam Selesai</label>
+                    <input type="time" name="jam_selesai" required>
+                </div>
+            </div>
+
+            <div class="section-title">Informasi & Rincian Pekerjaan</div>
+            <div class="form-group">
+                <label>Uraian Pekerjaan</label>
+                <input type="text" name="uraian_kerja" required placeholder="Contoh: Renovasi Ruang Staff dan Area Customer">
+            </div>
+            <div class="form-group">
+                <label>Lokasi Kerja</label>
+                <input type="text" name="lokasi_kerja" required placeholder="Contoh: Office Indrapura Lantai 2">
+            </div>
+            <div class="form-group">
+                <label>Rincian Detail Pekerjaan (Tulis per poin)</label>
+                <textarea name="rincian_kerja" rows="5" required placeholder="1. Bongkar Pasang Partisi Gypsum&#10;2. Pengecatan Ulang Dinding&#10;3. Instalasi Listrik..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Email Perusahaan/Vendor (Untuk pengiriman PDF dokumen jadi)</label>
+                <input type="email" name="email_vendor" required placeholder="contoh: vendor@email.com">
+            </div>
+            <div class="form-group">
+                <label>No. HP/WhatsApp Vendor</label>
+                <input type="tel" name="hp_vendor" required placeholder="contoh: 0812xxxxxxxx">
+            </div>
+
+            <button type="submit" id="submitBtn">Kirim Pengajuan Izin Kerja</button>
+        </form>
+
+        <div id="statusBox" class="status-box"></div>
+    </div>
+    
+    <div class="page-footer">
+        Developed by Alfiansyah Ramadlan
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('izinKerjaForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusBox = document.getElementById('statusBox');
+    
+    // Web App URL Google Apps Script Anda
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwE9VqNos4jSH2jRMgb4DAmeM2Onrog4Ij8O5LvT6jGWyl5ioiBPwfn1qvw2jpihwr5/exec";
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Mengirim...";
+        statusBox.style.display = "block";
+        statusBox.className = "status-box status-loading";
+        statusBox.innerText = "Sedang mengirim data ke sistem Meratus, mohon tunggu...";
+
+        // Mengubah data form menjadi objek plain text URL-Encoded untuk menghindari isu CORS FormData
+        const formData = new FormData(form);
+        const searchParams = new URLSearchParams();
+        
+        for (const pair of formData) {
+            searchParams.append(pair[0], pair[1]);
+        }
+
+        fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Menghindari pencegahan kebijakan CORS browser lokal
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: searchParams.toString()
+        })
+        .then(response => {
+            // Menggunakan mode 'no-cors' akan mengembalikan "opaque" response (status 0).
+            // Data tetap masuk ke Google Sheets. Kita asumsikan sukses jika masuk ke blok ini.
+            form.reset(); 
+            submitBtn.style.display = "none"; 
+            
+            statusBox.className = "status-box status-success";
+            statusBox.innerHTML = `
+                <h4 style="margin-top:0; color:#166534;">✔ PENGIRIMAN DATA DIPROSES!</h4>
+                <p>Terima kasih, data formulir izin kerja Anda sedang diteruskan ke database Google Sheets internal.</p>
+                <hr style="border:0; border-top: 1px solid #bbf7d0; margin: 10px 0;">
+                <p style="font-size:12px; color:#475569; margin-top: 10px;">*Silakan periksa lembar Google Sheets atau email Anda secara berkala untuk memastikan data telah masuk dan PDF berhasil dicetak.</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Error Pengiriman:', error);
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Kirim Pengajuan Izin Kerja";
+            statusBox.className = "status-box";
+            statusBox.style.backgroundColor = "#fee2e2";
+            statusBox.style.color = "#991b1b";
+            statusBox.style.border = "1px solid #fca5a5";
+            statusBox.innerText = "Terjadi gangguan sistem. Pastikan Apps Script Anda sudah di-deploy ke 'Anyone'.";
+        });
+    });
+</script>
+
+</body>
+</html>
